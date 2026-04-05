@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=center">
+    <title>Horizon Growth | Project Contract & Market Plans</title>
+    <!-- Google Fonts: modern sans-serif -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0F1F;
+            color: #FFFFFF;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            margin-bottom: 1rem;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #FF6A00;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 32px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            border-radius: 0px;
+        }
+
+        .btn:hover {
+            background: #FF5500;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 106, 0, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #FF6A00;
+        }
+        .btn-outline:hover {
+            background: #FF6A00;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: radial-gradient(ellipse at 70% 30%, #0B1D3A, #01010F);
+            border-bottom: 3px solid #FF6A00;
+            padding: 60px 0;
+        }
+
+        /* Contract Card */
+        .contract-card {
+            background: #0B1D3A;
+            border: 1px solid rgba(255,106,0,0.4);
+            padding: 48px 40px;
+            margin: 40px 0;
+            transition: box-shadow 0.2s;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #FF6A00;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        input, select, textarea {
+            background: #030617;
+            border: 1px solid #2A3756;
+            padding: 14px 16px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+            border-radius: 0px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #FF6A00;
+            box-shadow: 0 0 0 2px rgba(255,106,0,0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .payment-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .payment-row .form-group {
+            flex: 1;
+        }
+
+        hr {
+            border-color: #FF6A0030;
+            margin: 20px 0;
+        }
+
+        .checkbox-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+        }
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            accent-color: #FF6A00;
+        }
+
+        .submit-area {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .success-message {
+            background: #0F2E1C;
+            border-left: 6px solid #00C853;
+            padding: 20px;
+            margin-top: 30px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-badge {
+            background: #1A0F2E;
+            padding: 16px 24px;
+            margin-bottom: 32px;
+            border-left: 5px solid #FF6A00;
+        }
+
+        /* Pricing Plans Section - Market realistic */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .plan-card {
+            background: #0B1D3A;
+            padding: 32px 24px;
+            border: 2px solid rgba(255,106,0,0.4);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        .plan-card.featured {
+            border-color: #FF6A00;
+            background: #0F1F42;
+            transform: scale(1.02);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+        }
+        .plan-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FF6A00;
+            margin: 20px 0 10px;
+        }
+        .price small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #B0B8E0;
+        }
+        .plan-features {
+            list-style: none;
+            margin: 24px 0;
+        }
+        .plan-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #1F2A4A;
+        }
+        .plan-features i {
+            color: #FF6A00;
+            width: 20px;
+        }
+        .plan-card:hover {
+            transform: translateY(-8px);
+            border-color: #6A0DAD;
+        }
+        .badge-popular {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #FF6A00;
+            color: #0B1D3A;
+            font-weight: 800;
+            padding: 4px 16px;
+            font-size: 0.75rem;
+        }
+
+        footer {
+            background: #04070F;
+            padding: 50px 0 30px;
+            border-top: 1px solid #FF6A0030;
+            margin-top: 40px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer-col h4 {
+            color: #FF6A00;
+            margin-bottom: 18px;
+        }
+        .footer-col a {
+            color: #C0C6DD;
+            text-decoration: none;
+        }
+        .footer-col a:hover { color: #FF6A00; }
+        .social-icons {
+            display: flex;
+            gap: 18px;
+            margin-top: 16px;
+        }
+        .social-icons a {
+            font-size: 1.5rem;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            color: #9AA2C2;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 24px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .contract-card { padding: 32px 24px; }
+            .section { padding: 50px 0; }
+        }
+
+        ::selection {
+            background: #FF6A00;
+            color: #0B1D3A;
+        }
+        .gradient-underline {
+            border-bottom: 4px solid #FF6A00;
+            padding-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div style="max-width: 750px;">
+            <span style="color:#FF6A00; font-weight:800;">HORIZON GROWTH</span>
+            <h1>Project Brief & <span style="color:#FF6A00;">Contract Form</span></h1>
+            <p style="font-size:1.2rem; margin-top:20px; color:#D0D6F0;">Market-aligned budgets, flexible retainer plans, and performance-driven agreements. Let's build your growth engine.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Plans Section - Realistic Market Budgets -->
+<section class="section" style="padding-bottom: 20px;">
+    <div class="container">
+        <h2 style="text-align: center;">Choose Your <span class="gradient-underline">Growth Tier</span></h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 20px; color:#BDC5F0;">Transparent, market-competitive monthly retainers & project-based pricing.</p>
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h3>Essential</h3>
+                <div class="price">$3,800<small>/month</small></div>
+                <p style="color:#C9CFE6;">Ideal for startups & local brands</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 2 Core Channels (Google/Social)</li>
+                    <li><i class="fas fa-check"></i> Monthly Content & Ad Creative</li>
+                    <li><i class="fas fa-check"></i> Bi-weekly Performance Reports</li>
+                    <li><i class="fas fa-check"></i> CRO Basic Audit</li>
+                    <li><i class="fas fa-check"></i> Email Support (24h response)</li>
+                </ul>
+                <a href="#" class="btn" style="width:100%; text-align:center; justify-content:center;">Select Plan</a>
+            </div>
+            <div class="plan-card featured">
+                <div class="badge-popular">MOST POPULAR</div>
+                <h3>Growth</h3>
+                <div class="price">$7,500<small>/month</small></div>
+                <p style="color:#C9CFE6;">Full-funnel marketing for scaling brands</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 4+ Channels (Paid Search, Social, Display, Retargeting)</li>
+                    <li><i class="fas fa-check"></i> Advanced SEO & Content Strategy</li>
+                    <li><i class="fas fa-check"></i> Weekly Optimization & A/B Testing</li>
+                    <li><i class="fas fa-check"></i> Dedicated Account Strategist</li>
+                    <li><i class="fas fa-check"></i> Marketing Automation (HubSpot/Klaviyo)</li>
+                </ul>
+                <a href="#" class="btn" style="width:100%; text-align:center; justify-content:center;">Select Plan</a>
+            </div>
+            <div class="plan-card">
+                <h3>Enterprise</h3>
+                <div class="price">$15,000+<small>/month</small></div>
+                <p style="color:#C9CFE6;">Custom AI-driven growth for enterprises</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Omnichannel Domination (Programmatic, TV, Influencer)</li>
+                    <li><i class="fas fa-check"></i> Predictive Analytics & Custom Dashboards</li>
+                    <li><i class="fas fa-check"></i> Dedicated Creative Studio & Production</li>
+                    <li><i class="fas fa-check"></i> Strategic CRO & UX Overhaul</li>
+                    <li><i class="fas fa-check"></i> 24/7 Priority Support + SLA</li>
+                </ul>
+                <a href="#" class="btn" style="width:100%; text-align:center; justify-content:center;">Contact Sales</a>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 32px; font-size:0.9rem; color:#9AA2C2;">* One-time setup fees may apply. Custom project pricing also available.</p>
+    </div>
+</section>
+
+<!-- Contract / Brief Form Section (Updated Budget Options) -->
+<section class="section" style="padding-top: 20px;">
+    <div class="container">
+        <div class="contract-card">
+            <div class="info-badge">
+                <i class="fas fa-file-signature" style="color:#FF6A00; margin-right:12px;"></i> 
+                <strong>Submit this non-binding brief.</strong> Our team will respond with a formal contract, SOW, and timeline based on your selected budget & plan.
+            </div>
+
+            <form id="clientContractForm">
+                <div class="form-grid">
+                    <!-- Client Details -->
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Full Name *</label>
+                        <input type="text" id="fullName" required placeholder="Jordan Lee">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-building"></i> Company / Brand</label>
+                        <input type="text" id="company" placeholder="Your agency or business name">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email Address *</label>
+                        <input type="email" id="email" required placeholder="hello@brand.com">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone-alt"></i> Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+1 555 123 4567">
+                    </div>
+
+                    <!-- Project Scope -->
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-bullseye"></i> Primary Marketing Goal *</label>
+                        <select id="goal" required>
+                            <option value="" disabled selected>— Select your main objective —</option>
+                            <option>Increase brand awareness & reach</option>
+                            <option>Lead generation & sales conversion</option>
+                            <option>E-commerce / ROAS maximization</option>
+                            <option>SEO & organic growth domination</option>
+                            <option>Full-funnel performance marketing</option>
+                            <option>Content & social media scaling</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-clipboard-list"></i> Project Needs & Requirements *</label>
+                        <textarea id="requirements" placeholder="Describe challenges, target audience, KPIs, and specific services needed (PPC, SEO, email, creative, analytics, etc.)" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-alt"></i> Expected Start Date</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Preferred Engagement Model</label>
+                        <select id="duration">
+                            <option>One-off project (1-2 months)</option>
+                            <option>Quarterly retainer (3 months)</option>
+                            <option>6 months growth partnership</option>
+                            <option>12 months+ strategic alliance</option>
+                        </select>
+                    </div>
+
+                    <!-- MARKET REALISTIC BUDGET & PLANS -->
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-dollar-sign"></i> Monthly Budget / Retainer Range (Market Rates)</label>
+                        <div class="payment-row">
+                            <div class="form-group" style="flex:1">
+                                <select id="budgetRange">
+                                    <option value="$3,000 – $5,000">$3,000 – $5,000 (Essential tier)</option>
+                                    <option value="$6,000 – $9,000">$6,000 – $9,000 (Growth tier - Most Popular)</option>
+                                    <option value="$10,000 – $15,000">$10,000 – $15,000 (Performance Plus)</option>
+                                    <option value="$15,000 – $30,000+">$15,000 – $30,000+ (Enterprise / Custom)</option>
+                                    <option value="Project-based flat fee">Project-based flat fee (one-time)</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="flex:1">
+                                <input type="text" id="customBudget" placeholder="Exact budget if known (USD)">
+                            </div>
+                        </div>
+                        <small style="color:#B0B8E0;">*Our standard retainers start at $3,800/month. Custom project quotes available.</small>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-credit-card"></i> Preferred Payment Structure</label>
+                        <select id="paymentStructure">
+                            <option>50% upfront, 50% upon completion (projects)</option>
+                            <option>Monthly retainer invoicing (Net 15)</option>
+                            <option>Quarterly upfront with discount</option>
+                            <option>Milestone-based installments (custom)</option>
+                            <option>Performance-based + base retainer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-file-invoice-dollar"></i> Additional Contract Notes (payment terms, special clauses, ad spend budget)</label>
+                        <textarea id="paymentNotes" placeholder="Example: Estimated monthly ad spend separate from management fee; invoicing currency; payment deadlines; etc."></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group full-width">
+                        <input type="checkbox" id="termsCheckbox" required>
+                        <label style="font-weight:normal;">I confirm that the information provided is accurate, and I agree to receive a formal contract & proposal from Horizon Growth. This brief is non-binding.</label>
+                    </div>
+                </div>
+
+                <div class="submit-area">
+                    <button type="submit" class="btn"><i class="fas fa-file-contract"></i> Submit Contract Brief</button>
+                    <p style="margin-top: 18px; font-size:0.8rem; color:#9AA2C2;">We’ll respond within 24h with a formal agreement & scope aligned to your market budget.</p>
+                </div>
+
+                <div id="successMessage" class="success-message">
+                    <i class="fas fa-check-circle" style="color:#00C853; font-size:1.5rem;"></i>
+                    <strong>Brief received!</strong> Your project needs and budget details are being reviewed. Expect a custom proposal within one business day.
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="padding: 40px 0; background: linear-gradient(95deg, #FF6A00, #B23B00);">
+    <div class="container" style="text-align: center;">
+        <h2 style="color: #0B1D3A;">Need a custom enterprise contract?</h2>
+        <p style="font-size:1.2rem; max-width:600px; margin:10px auto;">Talk directly to our growth advisors & get a binding agreement in hours.</p>
+        <a href="#" class="btn" style="background:#0B1D3A; margin-top:20px;"><i class="fas fa-headset"></i> Schedule a Call</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Horizon Growth</h4>
+                <p>Market-leading performance agency. Transparent contracts, real ROI.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Legal & Contract</h4>
+                <ul>
+                    <li><a href="#">Master Service Agreement</a></li>
+                    <li><a href="#">Data Processing Addendum</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 440 Strand, London WC2R</li>
+                    <li><i class="fas fa-envelope"></i> contracts@horizongrowth.com</li>
+                    <li><i class="fas fa-phone"></i> +1 (888) 420-0924</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 Horizon Growth — Market-driven budgets & flexible plans for every business size.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Form handling with market budget validation
+    const form = document.getElementById('clientContractForm');
+    const successDiv = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const goal = document.getElementById('goal').value;
+        const requirements = document.getElementById('requirements').value.trim();
+        const termsChecked = document.getElementById('termsCheckbox').checked;
+
+        if (!fullName) {
+            alert("Please enter your full name.");
+            return;
+        }
+        if (!email) {
+            alert("Email address is required.");
+            return;
+        }
+        if (!goal || goal === "") {
+            alert("Please select your primary marketing goal.");
+            return;
+        }
+        if (!requirements) {
+            alert("Please describe your project needs & requirements.");
+            return;
+        }
+        if (!termsChecked) {
+            alert("You must agree to the terms to submit the contract brief.");
+            return;
+        }
+
+        // Collect form data for simulation (can be extended to API)
+        const formData = {
+            fullName: fullName,
+            company: document.getElementById('company').value,
+            email: email,
+            phone: document.getElementById('phone').value,
+            goal: goal,
+            requirements: requirements,
+            startDate: document.getElementById('startDate').value,
+            duration: document.getElementById('duration').value,
+            budgetRange: document.getElementById('budgetRange').value,
+            customBudget: document.getElementById('customBudget').value,
+            paymentStructure: document.getElementById('paymentStructure').value,
+            paymentNotes: document.getElementById('paymentNotes').value,
+        };
+        console.log("Market-fit Contract Brief:", formData);
+        
+        successDiv.style.display = "flex";
+        successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitted ✓";
+        submitBtn.style.opacity = "0.7";
+    });
+</script>
+</body>
+</html>
